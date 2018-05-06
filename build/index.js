@@ -111,9 +111,7 @@ var WordCloud = function (_React$Component) {
       }
     }, _this._onMouseOut = function (d) {
       if (_this.props.tooltipEnabled) {
-        _this.setState({
-          tooltipEnabled: false
-        });
+        _this.setState({ tooltipEnabled: false });
       }
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
@@ -144,19 +142,16 @@ var WordCloud = function (_React$Component) {
         content: tooltipContent,
         isEnabled: tooltipEnabled,
         x: tooltipX,
-        y: tooltipY
-      }) : null;
+        y: tooltipY }) : null;
       return React.createElement(
         'div',
-        {
-          ref: function ref(container) {
+        { ref: function ref(container) {
             _this2._container = container;
           } },
-        React.createElement('div', {
-          ref: function ref(chart) {
+        React.createElement('div', { ref: function ref(chart) {
             _this2._chart = chart;
-          }
-        }),
+          } }),
+        ' ',
         tooltip
       );
     }
@@ -216,17 +211,14 @@ var WordCloud = function (_React$Component) {
       // update svg/vis nodes dimensions
 
       this._setDimensions(height, width);
-      this._svg.attrs({
-        height: this._height,
-        width: this._width
-      }).style('background-color', 'white');
+      this._svg.attrs({ height: this._height, width: this._width }).style('background-color', 'transparent');
       this._vis.attr('transform', 'translate(' + this._width / 2 + ', ' + this._height / 2 + ')');
 
-      // update fontScale by rescaling to min/max values of data
-      // if min === max, we prefer the upper bound range value
+      // update fontScale by rescaling to min/max values of data if min === max, we
+      // prefer the upper bound range value
       var d3Scale = _getScale(scale);
       var filteredWords = words.slice(0, maxWords);
-      this._fontScale = _lodash2.default.uniqBy(filteredWords, wordCountKey).length > 1 ? d3Scale().range([10, 100]) : d3Scale().range([100, 100]);
+      this._fontScale = _lodash2.default.uniqBy(filteredWords, wordCountKey).length > 1 ? d3Scale().range([12, 140]) : d3Scale().range([140, 140]);
       if (filteredWords.length) {
         this._fontScale.domain([d3.min(filteredWords, function (d) {
           return d[wordCountKey];
